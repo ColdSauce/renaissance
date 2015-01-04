@@ -148,6 +148,8 @@ public class Main implements PitchDetectionHandler {
         new Thread(dispatcher, "Audio dispatching").start();
     }
 
+    //TODO: Create a way for users to play musical notes and map them to keys.
+    
     private int count = 0;
     private ArrayList<Double> pitches = new ArrayList<Double>();
 
