@@ -9,6 +9,7 @@ import be.tarsos.dsp.pitch.PitchProcessor;
 
 import javax.sound.sampled.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by Stefan on 1/3/2015.
@@ -148,17 +149,24 @@ public class Main implements PitchDetectionHandler {
     }
 
     private int count = 0;
+    private ArrayList<Double> pitches = new ArrayList<Double>();
+
     @Override
     public void handlePitch(PitchDetectionResult pitchDetectionResult, AudioEvent audioEvent) {
         float pitch = 0;
         if ((pitch = pitchDetectionResult.getPitch()) != -1) {
 
+
+            pitches.add((double)pitch);
+//            System.out.println(MathUtil.getAverageOfList(pitches));
+            MathUtil.getAverageOfList(pitches);
             count++;
             //TODO: Get the robot to do things based on musical notes.
             try {
                 Robot robot = new Robot();
                 int mouseX = (int)MouseInfo.getPointerInfo().getLocation().getX();
                 int mouseY =  (int)MouseInfo.getPointerInfo().getLocation().getY();
+
 
                 //On my flute, this is B flat
                 if(450 < pitch && pitch < 480){
