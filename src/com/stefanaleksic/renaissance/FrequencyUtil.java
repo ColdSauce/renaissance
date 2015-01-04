@@ -40,4 +40,7 @@ public class FrequencyUtil {
         double secondTerm = MathUtil.logOfBase(frequency / a4Hz, BASE_TWO);
         return (int) ((firstTerm * secondTerm) + a4Key);
     }
+     private enum Notes {
+        A,B,C,D,E,F,G
+    }
 }

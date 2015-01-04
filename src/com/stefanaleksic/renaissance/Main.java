@@ -163,7 +163,6 @@ public class Main implements PitchDetectionHandler {
                 //On my flute, this is B flat
                 if(450 < pitch && pitch < 480){
 
-
                     robot.mouseMove(mouseX + 5,mouseY);
                 }
 
@@ -172,6 +171,10 @@ public class Main implements PitchDetectionHandler {
             }
         }
     }
+
+
+
+
 
 
 
