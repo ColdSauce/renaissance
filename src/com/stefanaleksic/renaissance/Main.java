@@ -89,7 +89,7 @@ public class Main implements PitchDetectionHandler {
 
         for (int i = offset; i < allInfos.length; i++) {
             Mixer.Info currentInfo = allInfos[i];
-            if (currentInfo.getDescription().equals("Microphone")) {
+            if (currentInfo.getName().contains("Microphone")) {
                 return i;
             }
         }
@@ -147,13 +147,25 @@ public class Main implements PitchDetectionHandler {
         new Thread(dispatcher, "Audio dispatching").start();
     }
 
+    private int count = 0;
     @Override
     public void handlePitch(PitchDetectionResult pitchDetectionResult, AudioEvent audioEvent) {
         float pitch = 0;
         if ((pitch = pitchDetectionResult.getPitch()) != -1) {
+
+            count++;
             //TODO: Get the robot to do things based on musical notes.
             try {
                 Robot robot = new Robot();
+                int mouseX = (int)MouseInfo.getPointerInfo().getLocation().getX();
+                int mouseY =  (int)MouseInfo.getPointerInfo().getLocation().getY();
+
+                //On my flute, this is B flat
+                if(450 < pitch && pitch < 480){
+
+
+                    robot.mouseMove(mouseX + 5,mouseY);
+                }
 
             } catch (AWTException e) {
                 e.printStackTrace();
