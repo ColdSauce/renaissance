@@ -6,9 +6,12 @@ import be.tarsos.dsp.io.jvm.JVMAudioInputStream;
 import be.tarsos.dsp.pitch.PitchDetectionHandler;
 import be.tarsos.dsp.pitch.PitchDetectionResult;
 import be.tarsos.dsp.pitch.PitchProcessor;
+import javafx.scene.input.MouseButton;
 
 import javax.sound.sampled.*;
 import java.awt.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 /**
@@ -26,7 +29,7 @@ public class Main implements PitchDetectionHandler {
         boolean SHOULD_LOOP = true;
 
         Main main = new Main();
-        main.algo = PitchProcessor.PitchEstimationAlgorithm.YIN;
+        main.algo = PitchProcessor.PitchEstimationAlgorithm.AMDF;
         //This tests if the loop finished by finding a microphone or not.
         int index = -1;
         try {
@@ -149,9 +152,13 @@ public class Main implements PitchDetectionHandler {
     }
 
     //TODO: Create a way for users to play musical notes and map them to keys.
-    
+
     private int count = 0;
     private ArrayList<Double> pitches = new ArrayList<Double>();
+
+    private boolean isBetween(double value, double one, double two){
+        return one < value && value < two;
+    }
 
     @Override
     public void handlePitch(PitchDetectionResult pitchDetectionResult, AudioEvent audioEvent) {
@@ -159,9 +166,8 @@ public class Main implements PitchDetectionHandler {
         if ((pitch = pitchDetectionResult.getPitch()) != -1) {
 
 
-            pitches.add((double)pitch);
-//            System.out.println(MathUtil.getAverageOfList(pitches));
-            MathUtil.getAverageOfList(pitches);
+            pitches.add((double) pitch);
+            System.out.println(pitch + "hz");
             count++;
             //TODO: Get the robot to do things based on musical notes.
             try {
@@ -171,9 +177,28 @@ public class Main implements PitchDetectionHandler {
 
 
                 //On my flute, this is B flat
-                if(450 < pitch && pitch < 480){
+                if(isBetween(pitch,450,500)){
 
-                    robot.mouseMove(mouseX + 5,mouseY);
+//                    robot.mouseMove(mouseX + 10,mouseY);
+                    robot.keyPress(KeyEvent.VK_RIGHT);
+                    robot.keyRelease(KeyEvent.VK_RIGHT);
+                }
+                //On my flute, this is A
+                else if(isBetween(pitch,410,450)){
+
+//                    robot.mouseMove(mouseX, mouseY + 10);
+                    robot.keyPress(KeyEvent.VK_DOWN);
+                    robot.keyRelease(KeyEvent.VK_DOWN);
+                }
+                else if(isBetween(pitch,350,410)){
+//                    robot.mouseMove(mouseX - 10, mouseY);
+                    robot.keyPress(KeyEvent.VK_LEFT);
+                    robot.keyRelease(KeyEvent.VK_LEFT);
+                }
+                else if(isBetween(pitch,510,540)){
+//                    robot.mouseMove(mouseX, mouseY - 10);
+                    robot.keyPress(KeyEvent.VK_A);
+                    robot.keyRelease(KeyEvent.VK_A);
                 }
 
             } catch (AWTException e) {

@@ -3,7 +3,8 @@
 
 ###What is it?
 
-renaissance allows people to control their computers by playing musical notes.
+renaissance allows people to control their computers by playing musical notes. Check out a sample of what renaissance can do here. <a href="http://www.youtube.com/watch?feature=player_embedded&v=1GcoryCX5a8" target="_blank"><img src="http://img.youtube.com/vi/1GcoryCX5a8/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 ###Explanation
 renaissance employs a library known as TarsosDSP to detect a pitch played into the microphone in real time. TarsosDSP uses something known as a "Fast-Fourier Transform" that allows a computer to figure out what pitch a sound is. To read more about fast fourier transforms, check out the [wikipedia article](https://en.wikipedia.org/wiki/Fast_Fourier_transform). After finding the pitch of a sound, it presses a cooresponding key on the keyboard or moves the mouse in a certain way. 
