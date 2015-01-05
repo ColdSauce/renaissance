@@ -23,3 +23,6 @@ The GUI should have the ability to create a mapping of notes to keys. Such that 
 To make things more accurate, there should be some learning algorithm created such that the user can teach the computer what each note's frequency is in the beginning. 
 
 There are TODOs in the project. If you find one, you should definitely work on it! However, post on the IRC that you are working on it so that two people aren't working on the same thing at the same time.
+
+### Direction
+This project, in its release, will become a desktop application. The main goal is to get it so that people can create frequency ranges for their instruments and customize what each note does. That way, they can control their computer the way they want to.
