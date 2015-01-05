@@ -160,6 +160,7 @@ public class Main implements PitchDetectionHandler {
         return one < value && value < two;
     }
 
+    //TODO: Get this to write directly to the keyboard buffer so that it works with other native programs that aren't text boxes.
     @Override
     public void handlePitch(PitchDetectionResult pitchDetectionResult, AudioEvent audioEvent) {
         float pitch = 0;
