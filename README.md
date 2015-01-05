@@ -5,6 +5,7 @@
 
 renaissance allows people to control their computers by playing musical notes. Check out a sample of what renaissance can do here. 
 
+It is currently in the very early stages of production. To get it to even work, you must change some code depending on your instrument. Once the GUI is finished, it will be a piece of cake to get your instrument working!
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=1GcoryCX5a8" target="_blank"><img src="http://img.youtube.com/vi/1GcoryCX5a8/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
