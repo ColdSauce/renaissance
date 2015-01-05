@@ -23,6 +23,3 @@ The GUI should have the ability to create a mapping of notes to keys. Such that 
 To make things more accurate, there should be some learning algorithm created such that the user can teach the computer what each note's frequency is in the beginning. 
 
 There are TODOs in the project. If you find one, you should definitely work on it! However, post on the IRC that you are working on it so that two people aren't working on the same thing at the same time.
-
-###Sidenote
-I am probably going to work on an Android app for this so that it is more accessible to people since desktop apps are virtually dead now.
