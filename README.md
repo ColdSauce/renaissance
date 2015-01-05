@@ -3,7 +3,10 @@
 
 ###What is it?
 
-renaissance allows people to control their computers by playing musical notes. Check out a sample of what renaissance can do here. <a href="http://www.youtube.com/watch?feature=player_embedded&v=1GcoryCX5a8" target="_blank"><img src="http://img.youtube.com/vi/1GcoryCX5a8/0.jpg" 
+renaissance allows people to control their computers by playing musical notes. Check out a sample of what renaissance can do here. 
+
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=1GcoryCX5a8" target="_blank"><img src="http://img.youtube.com/vi/1GcoryCX5a8/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 ###Explanation
