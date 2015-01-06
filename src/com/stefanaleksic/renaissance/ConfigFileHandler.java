@@ -14,8 +14,17 @@ import java.util.HashMap;
  * B f 400.12
  */
 public class ConfigFileHandler {
-    private HashMap<FrequencyUtil.Note,Float> notes = null;
-    
+
+    //Note frequencies are held in a HashMap
+    private HashMap<FrequencyUtil.Note , Float> notes = null;
+
+    /**
+     * The constructor sets up the class to be used with the file.
+     * @param file
+     * The configuration file.
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public ConfigFileHandler(File file) throws FileNotFoundException,IOException {
         notes = new HashMap<FrequencyUtil.Note,Float>();
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -29,8 +38,9 @@ public class ConfigFileHandler {
 
             FrequencyUtil.NoteLetter noteLetter = FrequencyUtil.NoteLetter.valueOf(splitString[NOTE_LETTER_INDEX]);
 
-            FrequencyUtil.Note note = null;
+            FrequencyUtil.Note note;
             FrequencyUtil.Accidental accidental = FrequencyUtil.Accidental.NONE;
+
             if(splitString.length == 3){
                 accidental = FrequencyUtil.Accidental.getAccidentalFromOneLetter(splitString[OPTIONAL_SHARP_INDEX].charAt(0));
             }
@@ -40,6 +50,13 @@ public class ConfigFileHandler {
         }
     }
 
+    /**
+     * Convert notes to a frequency value.
+     * @param note
+     * Note to get frequency from.
+     * @return
+     * The frequency from the note.
+     */
     public float getFrequencyFromNote(FrequencyUtil.Note note){
         return notes.get(note);
     }

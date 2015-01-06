@@ -70,11 +70,8 @@ public class Main implements PitchDetectionHandler {
 
 
     /**
-     *
-     * @param index
-     * The index at which this mixer is found.
-     * @return
-     * The Mixer at the index.
+     * @param index The index at which this mixer is found.
+     * @return The Mixer at the index.
      */
     private Mixer getNewMixer(int index) {
         Mixer mixer = AudioSystem.getMixer(AudioSystem.getMixerInfo()[index]);
@@ -127,12 +124,12 @@ public class Main implements PitchDetectionHandler {
         boolean signed = true;
         boolean bigEndian = true;
 
-
         AudioFormat format = new AudioFormat(sampleRate, sampleInBits, channels, signed,
                 bigEndian);
 
         DataLine.Info dataLineInfo = new DataLine.Info(
                 TargetDataLine.class, format);
+
         TargetDataLine line = (TargetDataLine) mixer.getLine(dataLineInfo);
 
         int numberOfSamples = bufferSize;
@@ -141,7 +138,9 @@ public class Main implements PitchDetectionHandler {
 
         AudioInputStream stream = new AudioInputStream(line);
 
+        //TarsosDSP wraps the AudioInputStream to make it super simple to detect pitch.
         JVMAudioInputStream audioStream = new JVMAudioInputStream(stream);
+
 
         dispatcher = new AudioDispatcher(audioStream, bufferSize,
                 overlap);
@@ -151,68 +150,42 @@ public class Main implements PitchDetectionHandler {
         new Thread(dispatcher, "Audio dispatching").start();
     }
 
-    //TODO: Create a way for users to play musical notes and map them to keys.
 
-    private int count = 0;
-    private ArrayList<Double> pitches = new ArrayList<Double>();
-
-    private boolean isBetween(double value, double one, double two){
+    private boolean isBetween(double value, double one, double two) {
         return one < value && value < two;
     }
 
     //TODO: Get this to write directly to the keyboard buffer so that it works with other native programs that aren't text boxes.
+
+    /**
+     * This method gets called when the library TarsosDSP detected a pitch.
+     *
+     * @param pitchDetectionResult The object where you can get the details of a detected pitch.
+     * @param audioEvent           Object that depicts the audio at the instance a pitch is detected.
+     */
     @Override
     public void handlePitch(PitchDetectionResult pitchDetectionResult, AudioEvent audioEvent) {
+
+
         float pitch = 0;
-        if ((pitch = pitchDetectionResult.getPitch()) != -1) {
 
+        boolean isPitchProbable = pitchDetectionResult.getProbability() > 0.5;
 
-            pitches.add((double) pitch);
-            System.out.println(pitch + "hz");
-            count++;
+        if ((pitch = pitchDetectionResult.getPitch()) != -1 && isPitchProbable) {
             //TODO: Get the robot to do things based on musical notes.
             try {
                 Robot robot = new Robot();
-                int mouseX = (int)MouseInfo.getPointerInfo().getLocation().getX();
-                int mouseY =  (int)MouseInfo.getPointerInfo().getLocation().getY();
+                int mouseX = (int) MouseInfo.getPointerInfo().getLocation().getX();
+                int mouseY = (int) MouseInfo.getPointerInfo().getLocation().getY();
 
-
-                //On my flute, this is B flat
-                if(isBetween(pitch,450,500)){
-
-//                    robot.mouseMove(mouseX + 10,mouseY);
-                    robot.keyPress(KeyEvent.VK_RIGHT);
-                    robot.keyRelease(KeyEvent.VK_RIGHT);
-                }
-                //On my flute, this is A
-                else if(isBetween(pitch,410,450)){
-
-//                    robot.mouseMove(mouseX, mouseY + 10);
-                    robot.keyPress(KeyEvent.VK_DOWN);
-                    robot.keyRelease(KeyEvent.VK_DOWN);
-                }
-                else if(isBetween(pitch,350,410)){
-//                    robot.mouseMove(mouseX - 10, mouseY);
-                    robot.keyPress(KeyEvent.VK_LEFT);
-                    robot.keyRelease(KeyEvent.VK_LEFT);
-                }
-                else if(isBetween(pitch,510,540)){
-//                    robot.mouseMove(mouseX, mouseY - 10);
-                    robot.keyPress(KeyEvent.VK_A);
-                    robot.keyRelease(KeyEvent.VK_A);
-                }
-
+                //An example would be
+//                final int SPEED = 10;
+//                if(isBetween(pitch,400,450)){
+//                    robot.mouseMove(mouseX + SPEED, mouseY);
+//                }
             } catch (AWTException e) {
                 e.printStackTrace();
             }
         }
     }
-
-
-
-
-
-
-
-
 }

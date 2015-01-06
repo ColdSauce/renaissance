@@ -17,7 +17,6 @@ public class MathUtil {
     }
 
 
-    //TODO: Figure out why this isn't working.
     //TODO: Document this code.
     public static boolean isOutlier(int index, ArrayList<Double> values) {
         if (values.size() <= 1) {
