@@ -5,6 +5,7 @@
 
 renaissance allows people to control their computers by playing musical notes. Check out a sample of what renaissance can do here. 
 
+It is currently in the very early stages of production. To get it to even work, you must change some code depending on your instrument. Once the GUI is finished, it will be a piece of cake to get your instrument working!
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=1GcoryCX5a8" target="_blank"><img src="http://img.youtube.com/vi/1GcoryCX5a8/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
@@ -23,5 +24,5 @@ To make things more accurate, there should be some learning algorithm created su
 
 There are TODOs in the project. If you find one, you should definitely work on it! However, post on the IRC that you are working on it so that two people aren't working on the same thing at the same time.
 
-###Sidenote
-I am probably going to work on an Android app for this so that it is more accessible to people since desktop apps are virtually dead now.
+### Direction
+This project, in its release, will become a desktop application. The main goal is to get it so that people can create frequency ranges for their instruments and customize what each note does. That way, they can control their computer the way they want to.
