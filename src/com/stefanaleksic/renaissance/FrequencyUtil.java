@@ -49,7 +49,7 @@ public class FrequencyUtil {
         private Accidental accidental;
         private NoteLetter noteLetter;
 
-        public Note(NoteLetter noteLetter,Accidental accidental){
+        public Note(NoteLetter noteLetter, Accidental accidental) {
             this.noteLetter = noteLetter;
             this.accidental = accidental;
         }
@@ -82,13 +82,21 @@ public class FrequencyUtil {
             return result;
         }
     }
-    public enum NoteLetter {
-        A,B,C,D,E,F,G,;
-    }
-    public enum Accidental {
-          SHARP,FLAT,NONE;
 
-        public static Accidental getAccidentalFromOneLetter(char letter){
+    /**
+     * Each note has a NoteLetter from A to G.
+     */
+    public enum NoteLetter {
+        A, B, C, D, E, F, G,;
+    }
+
+    /**
+     * An "Accidental" is just a fancy word for sharp or flat.
+     */
+    public enum Accidental {
+        SHARP, FLAT, NONE;
+
+        public static Accidental getAccidentalFromOneLetter(char letter) {
             return 'f' == letter ? FLAT : SHARP;
         }
     }

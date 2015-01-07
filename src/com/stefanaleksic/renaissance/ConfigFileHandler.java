@@ -16,21 +16,21 @@ import java.util.HashMap;
 public class ConfigFileHandler {
 
     //Note frequencies are held in a HashMap
-    private HashMap<FrequencyUtil.Note , Float> notes = null;
+    private HashMap<FrequencyUtil.Note, Float> notes = null;
 
     /**
      * The constructor sets up the class to be used with the file.
-     * @param file
-     * The configuration file.
+     *
+     * @param file The configuration file.
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public ConfigFileHandler(File file) throws FileNotFoundException,IOException {
-        notes = new HashMap<FrequencyUtil.Note,Float>();
+    public ConfigFileHandler(File file) throws FileNotFoundException, IOException {
+        notes = new HashMap<FrequencyUtil.Note, Float>();
         BufferedReader br = new BufferedReader(new FileReader(file));
         String currentLine = "";
 
-        while((currentLine = br.readLine()) != null){
+        while ((currentLine = br.readLine()) != null) {
             String[] splitString = currentLine.split(" ");
             final int NOTE_LETTER_INDEX = 0;
             final int OPTIONAL_SHARP_INDEX = 1;
@@ -41,26 +41,24 @@ public class ConfigFileHandler {
             FrequencyUtil.Note note;
             FrequencyUtil.Accidental accidental = FrequencyUtil.Accidental.NONE;
 
-            if(splitString.length == 3){
+            if (splitString.length == 3) {
                 accidental = FrequencyUtil.Accidental.getAccidentalFromOneLetter(splitString[OPTIONAL_SHARP_INDEX].charAt(0));
             }
-            note = new FrequencyUtil.Note(noteLetter,accidental);
+            note = new FrequencyUtil.Note(noteLetter, accidental);
 
-            notes.put(note,Float.valueOf(splitString[FREQUENCY_INDEX]));
+            notes.put(note, Float.valueOf(splitString[FREQUENCY_INDEX]));
         }
     }
 
     /**
      * Convert notes to a frequency value.
-     * @param note
-     * Note to get frequency from.
-     * @return
-     * The frequency from the note.
+     *
+     * @param note Note to get frequency from.
+     * @return The frequency from the note.
      */
-    public float getFrequencyFromNote(FrequencyUtil.Note note){
+    public float getFrequencyFromNote(FrequencyUtil.Note note) {
         return notes.get(note);
     }
-
 
 
 }
